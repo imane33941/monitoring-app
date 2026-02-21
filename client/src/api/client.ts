@@ -1,7 +1,7 @@
-import { initClient } from "@ts-rest/core";
-import { apiContract } from "@monitoring/shared";
+import { initClient } from '@ts-rest/core';
+import { apiContract } from '../../../packages/shared/src/contracts/api.contract';
 
 export const apiClient = initClient(apiContract, {
-  baseUrl: "http://localhost:3001",
+  baseUrl: 'http://localhost:3001',
   baseHeaders: {},
 });
