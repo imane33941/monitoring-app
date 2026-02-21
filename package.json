@@ -1,0 +1,13 @@
+{
+  "name": "monitoring-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail --prefix-colors \"cyan,green\" --names \"server,client\" \"pnpm --filter @monitoring/server run dev\" \"pnpm --filter @monitoring/client run dev\"",
+    "build:shared": "pnpm --filter @monitoring/shared run build",
+    "build": "pnpm run build:shared && pnpm --filter @monitoring/server run build && pnpm --filter @monitoring/client run build"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0"
+  }
+}
