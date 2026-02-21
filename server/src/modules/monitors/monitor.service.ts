@@ -142,15 +142,13 @@ export class MonitorService {
 
   @Cron('* * * * *')
   async pingAll() {
-    const em = this.em.fork(); // ← fork() crée un contexte isolé
+    const em = this.em.fork();
     const monitors = await em.find(MonitorEntity, { active: true });
-
     for (const monitor of monitors) {
       const shouldPing =
         !monitor.lastCheckedAt ||
         Date.now() - monitor.lastCheckedAt.getTime() >=
           monitor.intervalSeconds * 1000;
-
       if (shouldPing) {
         this.pingOne(monitor).catch((err) =>
           this.logger.error(`Ping error for ${monitor.name}: ${err.message}`),

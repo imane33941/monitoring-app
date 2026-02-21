@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "nest start --watch",
     "build": "nest build",
-    "build:full": "cd ../client && vite build --outDir ../server/public && cd ../server && nest build",
+    "build:full": "cd ../packages/shared && tsc && cd ../client && vite build --outDir ../server/public && cd ../server && nest build",    
     "start": "node dist/main"
   },
   "dependencies": {
