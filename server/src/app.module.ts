@@ -5,7 +5,9 @@ import { ConfigModule } from '@nestjs/config';
 import { ScheduleModule } from '@nestjs/schedule';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { MonitorEntity } from './modules/monitors/monitor.entity';
 import { MonitorModule } from './modules/monitors/monitor.module';
+import { PingResultEntity } from './modules/monitors/ping-result.entity';
 
 @Module({
   imports: [
@@ -13,9 +15,9 @@ import { MonitorModule } from './modules/monitors/monitor.module';
     ScheduleModule.forRoot(),
     MikroOrmModule.forRoot({
       driver: BetterSqliteDriver,
-      dbName: './data/monitoring.db',
-      entities: ['./dist/modules/**/*.entity.js'],
-      entitiesTs: ['./src/modules/**/*.entity.ts'],
+      dbName: '/tmp/monitoring.db',
+      entities: [MonitorEntity, PingResultEntity],
+      entitiesTs: [MonitorEntity, PingResultEntity],
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
