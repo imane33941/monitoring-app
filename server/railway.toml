@@ -1,0 +1,9 @@
+[build]
+builder = "nixpacks"
+buildCommand = "cd .. && pnpm install --frozen-lockfile && pnpm run build:full"
+
+[deploy]
+startCommand = "node dist/main"
+healthcheckPath = "/api/monitors"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
