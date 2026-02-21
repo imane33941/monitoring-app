@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite --port 5174",
-    "build": "vite build",
+"build": "vite build --outDir ../server/public",
     "preview": "vite preview"
   },
   "dependencies": {

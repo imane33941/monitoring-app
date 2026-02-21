@@ -21,7 +21,7 @@ import { PingResultEntity } from './modules/monitors/ping-result.entity';
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'public'),
-      exclude: ['/api/(.*)'],
+      exclude: ['/api*'],
     }),
     MonitorModule,
   ],
