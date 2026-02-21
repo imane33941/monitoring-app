@@ -1,14 +1,18 @@
 FROM node:20-alpine
 
-WORKDIR /app
-
-# Installe pnpm
 RUN npm install -g pnpm
 
-# Copie tout le monorepo
-COPY . .
+WORKDIR /app
 
-# Install + build
+# Copie tout le monorepo depuis la racine
+COPY pnpm-workspace.yaml .
+COPY pnpm-lock.yaml .
+COPY .npmrc .
+COPY package.json .
+COPY packages/ packages/
+COPY server/ server/
+COPY client/ client/
+
 RUN pnpm install --frozen-lockfile
 RUN pnpm run build:full
 
